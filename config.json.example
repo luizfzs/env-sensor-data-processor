@@ -1,0 +1,20 @@
+{
+  "general": {
+    "timezone": "your-timezone"
+  },
+
+  "influxdb": {
+     "host": "localhost",
+     "port": 8086,
+      "database": "your-database",
+    "measurement": "your-measurement-name"
+  },
+
+  "rabbitmq": {
+    "host": "localhost",
+    "port": 5672,
+    "user": "username",
+    "pass": "password",
+    "consume_from_queue": "your-queue"
+  }
+}
