@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - dev
       
 env:
   IMAGE_NAME: env_sensor_data_processor
