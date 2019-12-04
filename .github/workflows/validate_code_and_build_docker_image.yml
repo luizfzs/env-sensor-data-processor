@@ -1,0 +1,21 @@
+name: Validate Code And Build Docker Image
+
+on: 
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    
+env:
+  IMAGE_NAME: env_sensor_data_processor
+
+jobs:
+  build_docker_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        
+      - name: Validate Python Code
+        run: python3 -m compileall -f main.py
+        
+      - name: Build Docker Image
+        run: docker build -f Dockerfile . --tag ${IMAGE_NAME}
