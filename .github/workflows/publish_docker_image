@@ -4,12 +4,30 @@ on:
   push:
     branches:
       - master
+      - dev
+      
+env:
+  IMAGE_NAME: env_sensor_data_processor
 
 jobs:
   publish_docker_image:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: luizfzs/pull_request
+      - uses: luizfzs/validate_code_and_build_docker_image
+      
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        
+      - name: Publish Image to Registry
+        run: |
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          #VERSION=$(date +%Y%m%d%H%M%S)
+          VERSION=20191204012926
+          
+          echo IMAGE_NAME:$IMAGE_NAME
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+          
+          docker tag ${IMAGE_NAME} ${IMAGE_ID}:${VERSION}
+          docker push ${IMAGE_ID}:${VERSION}
