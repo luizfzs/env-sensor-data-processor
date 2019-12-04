@@ -21,8 +21,7 @@ jobs:
       - name: Publish Image to Registry
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
-          #VERSION=$(date +%Y%m%d%H%M%S)
-          VERSION=20191204012926
+          VERSION=$(date +%Y%m%d%H%M%S)
           
           echo IMAGE_NAME:$IMAGE_NAME
           echo IMAGE_ID=$IMAGE_ID
