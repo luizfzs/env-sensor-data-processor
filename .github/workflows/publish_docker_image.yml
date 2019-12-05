@@ -13,7 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: luizfzs/validate_code_and_build_docker_image
+      - uses: actions/checkout@v1
+        
+      - uses: luizfzs/env-sensor-data-processor/.github/workflows/validate_code_and_build_docker_image
       
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
