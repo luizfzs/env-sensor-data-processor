@@ -1,0 +1,12 @@
+version: '3.7' 
+
+services:
+  home-monitoring_env_indoors_bedroom:
+    image: docker.pkg.github.com/luizfzs/env-sensor-data-processor/env_sensor_data_processor:20191204012926
+    configs:
+      - source: env_indoors_bedroom_config.json
+        target: /app/config.json
+
+configs:
+  env_indoors_bedroom_config.json:
+    external: true
